@@ -1,0 +1,26 @@
+.mainTask {
+  display: flex;
+  width: 345px;
+  padding: 16px;
+  border: 1px solid;
+  justify-content: space-between;
+}
+.checkAndTxt{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.taskDeleteBtn{
+    padding: 6px 12px;
+    background-color: #fef2f2;
+    border: none;
+    border-radius: 6px;
+}
+.checkBox{
+    width: 20px;
+    height: 20px;
+}
+.taskTxt{
+    font-size: 14px;
+    font-weight: 400;
+}
