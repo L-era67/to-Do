@@ -1,14 +1,26 @@
 import styles from "./style/Task.module.css";
 
-export const Task = ({task}) => {
+export const Task = ({ task, removeTaskById }) => {
+  // ened handle dl hiisen tohioldold bugd del
+
+  // const delBtn = () => {
+  //   alert("Are you sure you want to delkete this task?");
+  // }
+
   return (
     <div className={styles.mainTask}>
       <div className={styles.checkAndTxt}>
         <input className={styles.checkBox} type="checkbox" />
+
         <p className={styles.taskTxt}>{task.taskName}</p>
       </div>
 
-      <button className={styles.taskDeleteBtn}>Delete</button>
+      <button
+        onClick={() => removeTaskById(task.id)}
+        className={styles.taskDeleteBtn}
+      >
+        Delete
+      </button>
     </div>
   );
 };
