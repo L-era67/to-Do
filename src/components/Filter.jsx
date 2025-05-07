@@ -6,7 +6,7 @@ export const Filter =({setTaskList, taskList}) =>{
     const [all, setAll] = useState(taskList)
 
 
-    console.log("allBtn:", taskList)
+    // console.log("allBtn:", taskList)
 
     const allBtn = () =>{
         setAll(all)
