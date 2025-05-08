@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Form } from "../components/Form";
 import { Task } from "../components/Task";
 import { Filter } from "@/components/Filter";
+import {Footer} from "../components/Footer"
 
 import style from "../styles/Home.module.css";
+import { NoTask } from "@/components/NoTask";
 
 export default function Home() {
 
@@ -56,6 +58,18 @@ export default function Home() {
   console.log("FILTERED:", filterTaskList)
 
 
+
+  // FOOTER
+  // const allCount = (taskList.map((task)=>task))
+ 
+  const allCount = taskList.length
+   console.log("allCount:", allCount)
+
+  const completedCount = (taskList.filter((taskComp)=> taskComp.isComplated === true)).length
+    
+  console.log("Completed length:", completedCount);
+
+
   return (
     <div className={style.Con}>
       <div className={style.main}>
@@ -78,6 +92,10 @@ export default function Home() {
             toggleTaskById={handleToggle}
           />
         ))}
+        {filterTaskList.map(task)=> task.length===0? <NoTask /> : task}
+        <NoTask />
+
+        <Footer allCount = {allCount} completedCount={completedCount}/>
       </div>
     </div>
   );
