@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Form } from "../components/Form";
-import { Task } from "../components/task";
+import { Task } from "../components/Task";
 import { Filter } from "@/components/Filter";
 
 import style from "../styles/Home.module.css";
 
 export default function Home() {
   const [taskList, setTaskList] = useState([]); /*state global */
+  const [list, setList] = useState("all")
+
 
   const handleDel = (id) => {
     const result = taskList.filter((task) => task.id !== id);
@@ -14,15 +16,14 @@ export default function Home() {
   };
 
   const handleToggle = (id) => {
-   
     const updatecheck = taskList.map((task) => {
-      console.log("togglell", task)
-      if(id===task.id){
-       return {...task, isComplated: !task.isComplated}
+      if (id === task.id) {
+        return { ...task, isComplated: !task.isComplated };
       }
       return task;
     });
-    console.log("Comp:", updatecheck)
+    setTaskList(updatecheck);
+    console.log("insdie handleToggle", taskList); /*hots*/
   };
 
   // console.log("tasklist:", taskList);
@@ -30,11 +31,15 @@ export default function Home() {
   return (
     <div className={style.Con}>
       <div className={style.main}>
+
         <h3>To-Do-List</h3>
 
         <Form setTaskList={setTaskList} taskList={taskList} />
 
-        <Filter setTaskList={setTaskList} taskList={taskList} />
+        {/* <Filter setTaskList={setTaskList} taskList={taskList} /> */}
+        <Filter 
+        
+        />
 
         {taskList.map((task, index) => (
           <Task
@@ -48,3 +53,7 @@ export default function Home() {
     </div>
   );
 }
+
+// const numbers = [1.2];
+
+// const filterValue = 1;
