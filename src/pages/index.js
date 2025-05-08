@@ -6,15 +6,27 @@ import { Filter } from "@/components/Filter";
 import style from "../styles/Home.module.css";
 
 export default function Home() {
+
   const [taskList, setTaskList] = useState([]); /*state global */
-  const [list, setList] = useState("all")
+  const [list, setList] = useState("all") /* 3 btn filter hiih*/
+  
 
-
+// handle DELETE
   const handleDel = (id) => {
-    const result = taskList.filter((task) => task.id !== id);
+    const result = taskList.filter((task) => {
+      const ustga = window.confirm("Are you sure you want to delete this task?") /*Tuhain hunees T or F utga awdag baihnee ok darwal butsaa if*/
+
+      if(ustga){
+       return task.id !==id
+      }
+     return task;
+    });
+     
     setTaskList(result);
   };
 
+
+// CHECK
   const handleToggle = (id) => {
     const updatecheck = taskList.map((task) => {
       if (id === task.id) {
@@ -26,7 +38,23 @@ export default function Home() {
     console.log("insdie handleToggle", taskList); /*hots*/
   };
 
-  // console.log("tasklist:", taskList);
+
+
+  // FILTER LIST ["all", "active", "completed"]
+  const filterTaskList = taskList.filter((task)=>{
+    if(list === "active" && task.isComplated===false){
+      return task;
+    }
+    if(list==="completed" && task.isComplated===true){
+
+      return task;
+    }
+    if(list==="all"){
+      return task;
+    }
+  })
+  console.log("FILTERED:", filterTaskList)
+
 
   return (
     <div className={style.Con}>
@@ -36,12 +64,13 @@ export default function Home() {
 
         <Form setTaskList={setTaskList} taskList={taskList} />
 
-        {/* <Filter setTaskList={setTaskList} taskList={taskList} /> */}
         <Filter 
-        
+          lists = {["all", "active", "completed"]}
+          setList = {setList}
+          checkedList = {list}
         />
 
-        {taskList.map((task, index) => (
+        {filterTaskList.map((task, index) => (
           <Task
             key={index}
             task={task}
@@ -54,6 +83,4 @@ export default function Home() {
   );
 }
 
-// const numbers = [1.2];
 
-// const filterValue = 1;

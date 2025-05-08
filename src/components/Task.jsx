@@ -26,6 +26,8 @@ export const Task = ({ task, removeTaskById, toggleTaskById }) => {
       >
         Delete
       </button>
+
+     
     </div>
   );
 };
