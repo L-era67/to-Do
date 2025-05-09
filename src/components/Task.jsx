@@ -17,7 +17,7 @@ export const Task = ({ task, removeTaskById, toggleTaskById }) => {
           type="checkbox"
         />
 
-        <p className={styles.taskTxt}>{task.taskName}</p>
+        <p style={{textDecoration: task.isComplated? "line-through" : ""}} className={styles.taskTxt}>{task.taskName}</p>
       </div>
 
       <button

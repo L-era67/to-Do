@@ -11,7 +11,9 @@ export const Filter = ({lists, setList, checkedList}) => {
   return (
     <div>
       {lists.map((filter)=>(
+      
         <button onClick={()=>chooseList(filter)}>{filter}</button>
+        
       ))}
     </div>
   );

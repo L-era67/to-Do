@@ -2,87 +2,75 @@ import { useState } from "react";
 import { Form } from "../components/Form";
 import { Task } from "../components/Task";
 import { Filter } from "@/components/Filter";
-import {Footer} from "../components/Footer"
+import { Footer } from "../components/Footer";
 
 import style from "../styles/Home.module.css";
 import { NoTask } from "@/components/NoTask";
 
 export default function Home() {
+  const [taskList, setTaskList] = useState([]); /*state global ene heseg zuwhun niit array haruulna*/
+  const [list, setList] =useState("all"); /* 3 btn songoltoor buh arr, FALSE or TRUE gesen filter-tei songolttoi ARRAY gargaj irehnee gol ni heseg maain "filterTaskList"-r damjin shuu */
+  const lists = ["all", "active", "completed"];
 
-  const [taskList, setTaskList] = useState([]); /*state global */
-  const [list, setList] = useState("all") /* 3 btn filter hiih*/
-  
-
-// handle DELETE
+  // handle DELETE
   const handleDel = (id) => {
-    const result = taskList.filter((task) => {
-      const ustga = window.confirm("Are you sure you want to delete this task?") /*Tuhain hunees T or F utga awdag baihnee ok darwal butsaa if*/
+    const ustga = window.confirm(
+      "Are you sure you want to delete this task?"
+    ); /*Tuhain hunees T or F utga awdag baihnee ok darwal butsaa if*/
 
-      if(ustga){
-       return task.id !==id
-      }
-     return task;
+    if (!ustga) return;
+
+    const result = taskList.filter((task) => {
+      return task.id !== id;
     });
-     
+
     setTaskList(result);
   };
 
-
-// CHECK
-  const handleToggle = (id) => {
-    const updatecheck = taskList.map((task) => {
-      if (id === task.id) {
-        return { ...task, isComplated: !task.isComplated };
-      }
-      return task;
-    });
+  // CHECK TENARY
+  const handleToggle = (ID) => {
+    const updatecheck = taskList.map((task) =>
+      task.id === ID ? { ...task, isComplated: !task.isComplated } : task
+    );
     setTaskList(updatecheck);
-    console.log("insdie handleToggle", taskList); /*hots*/
   };
 
-
-
   // FILTER LIST ["all", "active", "completed"]
-  const filterTaskList = taskList.filter((task)=>{
-    if(list === "active" && task.isComplated===false){
+  const filterTaskList = taskList.filter((task) => {
+    lists.map((btn) => list === btn);
+    if (list === "active" && task.isComplated === false) {
       return task;
     }
-    if(list==="completed" && task.isComplated===true){
-
+    if (list === "completed" && task.isComplated === true) {
       return task;
     }
-    if(list==="all"){
+    if (list === "all") {
       return task;
     }
-  })
-  console.log("FILTERED:", filterTaskList)
-
-
+  });
+  console.log("FILTERED:", filterTaskList);
 
   // FOOTER
   // const allCount = (taskList.map((task)=>task))
- 
-  const allCount = taskList.length
-   console.log("allCount:", allCount)
 
-  const completedCount = (taskList.filter((taskComp)=> taskComp.isComplated === true)).length
-    
+  // COMPLETED COUNT
+  const allCount = taskList.length;
+  console.log("allCount:", allCount);
+
+  const completedCount = taskList.filter(
+    (taskComp) => taskComp.isComplated === true
+  ).length;
+
   console.log("Completed length:", completedCount);
-
 
   return (
     <div className={style.Con}>
       <div className={style.main}>
-
         <h3>To-Do-List</h3>
 
         <Form setTaskList={setTaskList} taskList={taskList} />
 
-        <Filter 
-          lists = {["all", "active", "completed"]}
-          setList = {setList}
-          checkedList = {list}
-        />
+        <Filter lists={lists} setList={setList} checkedList={list} />
 
         {filterTaskList.map((task, index) => (
           <Task
@@ -92,13 +80,13 @@ export default function Home() {
             toggleTaskById={handleToggle}
           />
         ))}
-        {filterTaskList.map(task)=> task.length===0? <NoTask /> : task}
-        <NoTask />
+        {/* {filterTaskList.map(task)=> task.length===0? <NoTask /> : task} */}
 
-        <Footer allCount = {allCount} completedCount={completedCount}/>
+        {filterTaskList.length === 0 ? <NoTask /> : null}
+
+        {taskList.length !==0 ? <Footer allCount={allCount} completedCount={completedCount}/> : null}
+        
       </div>
     </div>
   );
 }
-
-
