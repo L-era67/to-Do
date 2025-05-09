@@ -20,8 +20,15 @@ export const Form = ({ setTaskList, taskList }) => {
             taskName: inputValue,
             isComplated: false,
         };
-        setTaskList([...taskList, newTask]) /*push hiigdechhen [] bolgoj map zuw ajilnaa*/
-        setInputValue("")
+        
+         
+         if(newTask.taskName===""){
+             alert("Please enter a task!");
+         }else{
+          setTaskList([...taskList, newTask]) /*push hiigdechhen [] bolgoj map zuw ajilnaa*/
+          setInputValue("")
+         }
+        
     };
     
   return (

@@ -1,3 +1,7 @@
 export const NoTask = () => {
-  return <p>Not task yet. Add one above!</p>;
+  return (
+    <div>
+      <p>Not task yet. Add one above!</p>
+    </div>
+  );
 };

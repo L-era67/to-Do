@@ -8,9 +8,20 @@ import style from "../styles/Home.module.css";
 import { NoTask } from "@/components/NoTask";
 
 export default function Home() {
-  const [taskList, setTaskList] = useState([]); /*state global ene heseg zuwhun niit array haruulna*/
-  const [list, setList] =useState("all"); /* 3 btn songoltoor buh arr, FALSE or TRUE gesen filter-tei songolttoi ARRAY gargaj irehnee gol ni heseg maain "filterTaskList"-r damjin shuu */
+  const [taskList, setTaskList] = useState(
+    []
+  ); /*state global ene heseg zuwhun niit array haruulna*/
+  const [list, setList] =
+    useState(
+      "all"
+    ); /* 3 btn songoltoor buh arr, FALSE or TRUE gesen filter-tei songolttoi ARRAY gargaj irehnee gol ni heseg maain "filterTaskList"-r damjin shuu */
   const lists = ["all", "active", "completed"];
+
+  // const lists = [
+  //   { name: "all", backgroundColor: "blue" },
+  //   { name: "active", backgroundColor: "white" },
+  //   { name: "completed", backgroundColor: "white" },
+  // ];
 
   // handle DELETE
   const handleDel = (id) => {
@@ -63,6 +74,15 @@ export default function Home() {
 
   console.log("Completed length:", completedCount);
 
+  // ALLComplete DELETE
+  const allDelete = () => {
+    const ALLCompletedDelete = taskList.filter( (task) => task.isComplated !== true);
+    const delAllCompAlert = window.confirm("Are you sure you want to clear all completed tasks?")
+
+    if(!delAllCompAlert) return
+    setTaskList(ALLCompletedDelete);
+  };
+
   return (
     <div className={style.Con}>
       <div className={style.main}>
@@ -84,8 +104,15 @@ export default function Home() {
 
         {filterTaskList.length === 0 ? <NoTask /> : null}
 
-        {taskList.length !==0 ? <Footer allCount={allCount} completedCount={completedCount}/> : null}
-        
+        {taskList.length !== 0 ? (
+          <Footer
+            allCount={allCount}
+            completedCount={completedCount}
+            allDeleteComp={allDelete}
+          />
+        ) : null}
+
+        <p>Powered by <b>Raito</b> </p>
       </div>
     </div>
   );
