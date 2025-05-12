@@ -112,7 +112,7 @@ export default function Home() {
           />
         ) : null}
 
-        <p>Powered by <b>Raito</b> </p>
+        <p>Powered by <b>"L"</b> </p>
       </div>
     </div>
   );
