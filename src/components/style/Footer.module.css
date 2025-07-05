@@ -1,0 +1,71 @@
+.footerContainer {
+  width: 400px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+}
+
+.footerText {
+  font-size: 14px;
+  color: #6b7280; /* soft gray */
+}
+
+.clearBtn {
+  background-color: #f9a8d4;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.clearBtn:hover {
+  background-color: #f47194;
+  transform: scale(1.05);
+}
+
+.NonCleatBtn {
+  background-color: #f9a8d4;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.NonCleatBtn:hover {
+  background-color: #f472b6;
+}
+
+.finalClearBtn {
+  background-color: #f47194;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.finalClearBtn:hover {
+  background-color: #f47194;
+  color: black;
+  transform: scale(1.05);
+}
+
+.diologTitle {
+  color: #8a0d28;
+}
+
+.diologDesc {
+  color: #74555b;
+}

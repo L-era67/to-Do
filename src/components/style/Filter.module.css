@@ -1,4 +1,14 @@
-.mainBtn{
-    display: flex;
-    gap: 6px;
+.mainBtn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f9a8d4;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s ease all;
+}
+
+.mainBtn:hover {
+  background-color: #f47194;
+  transform: scale(1.05);
 }

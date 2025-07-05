@@ -1,31 +1,82 @@
 .mainTask {
   display: flex;
-  width: 345px;
-  padding: 16px;
-  border: 1px solid;
   justify-content: space-between;
-}
-.checkAndTxt{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.taskDeleteBtn{
-    padding: 6px 12px;
-    background-color: #fef2f2;
-    border: none;
-    border-radius: 6px;
-}
-.checkBox{
-    width: 20px;
-    height: 20px;
-}
-.taskTxt{
-    font-size: 14px;
-    font-weight: 400;
+  align-items: center;
+  width: 400px;
+  margin: 14px 18px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
 
-.Ex{
-    color: aqua;
-    
+.mainTask:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+}
+
+.checkAndTxt {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.taskDeleteBtn {
+  background-color: transparent;
+  color: #8A0D28;
+  border: 1px solid #F47194;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.taskDeleteBtn:hover {
+  background-color: #F47194;
+  color: white;
+}
+
+.checkBox {
+  width: 20px;
+  height: 20px;
+}
+.taskTxt {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.Ex {
+  color: aqua;
+}
+
+
+.checkBox {
+  width: 20px;
+  height: 20px;
+  appearance: none;         /* default checkbox-ийг арилгана */
+  border: 2px solid #F47194;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkBox:hover {
+  box-shadow: 0 0 0 4px #f4719422;
+}
+
+.checkBox:checked {
+  background-color: #F47194;
+  border-color: #F47194;
+}
+
+.checkBox:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: white;
 }

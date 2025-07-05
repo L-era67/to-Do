@@ -11,25 +11,25 @@ export default function Home() {
   const [taskList, setTaskList] = useState(
     []
   ); /*state global ene heseg zuwhun niit array haruulna*/
+
   const [list, setList] =
     useState(
       "all"
     ); /* 3 btn songoltoor buh arr, FALSE or TRUE gesen filter-tei songolttoi ARRAY gargaj irehnee gol ni heseg maain "filterTaskList"-r damjin shuu */
-  const lists = ["all", "active", "completed"];
 
-  // const lists = [
-  //   { name: "all", backgroundColor: "blue" },
-  //   { name: "active", backgroundColor: "white" },
-  //   { name: "completed", backgroundColor: "white" },
-  // ];
+  const lists = ["all", "active", "completed"];
 
   // handle DELETE
   const handleDel = (id) => {
-    const ustga = window.confirm(
-      "Are you sure you want to delete this task?"
-    ); /*Tuhain hunees T or F utga awdag baihnee ok darwal butsaa if*/
 
-    if (!ustga) return;
+
+    // const ustga = window.confirm(
+    //   "Are you sure you want to delete this task?"
+    // ); /*Tuhain hunees T or F utga awdag baihnee ok darwal butsaa if*/
+
+
+
+    // if (!ustga) return;
 
     const result = taskList.filter((task) => {
       return task.id !== id;
@@ -61,9 +61,6 @@ export default function Home() {
   });
   console.log("FILTERED:", filterTaskList);
 
-  // FOOTER
-  // const allCount = (taskList.map((task)=>task))
-
   // COMPLETED COUNT
   const allCount = taskList.length;
   console.log("allCount:", allCount);
@@ -76,17 +73,21 @@ export default function Home() {
 
   // ALLComplete DELETE
   const allDelete = () => {
-    const ALLCompletedDelete = taskList.filter( (task) => task.isComplated !== true);
-    const delAllCompAlert = window.confirm("Are you sure you want to clear all completed tasks?")
+    const ALLCompletedDelete = taskList.filter(
+      (task) => task.isComplated !== true
+    );
+    // const delAllCompAlert = window.confirm(
+    //   "Are you sure you want to clear all completed tasks?"
+    // );
 
-    if(!delAllCompAlert) return
+    // if (!delAllCompAlert) return;
     setTaskList(ALLCompletedDelete);
   };
 
   return (
     <div className={style.Con}>
       <div className={style.main}>
-        <h3>To-Do-List</h3>
+        <h3 className={style.title}>To-Do-List</h3>
 
         <Form setTaskList={setTaskList} taskList={taskList} />
 
@@ -100,7 +101,6 @@ export default function Home() {
             toggleTaskById={handleToggle}
           />
         ))}
-        {/* {filterTaskList.map(task)=> task.length===0? <NoTask /> : task} */}
 
         {filterTaskList.length === 0 ? <NoTask /> : null}
 
@@ -109,10 +109,14 @@ export default function Home() {
             allCount={allCount}
             completedCount={completedCount}
             allDeleteComp={allDelete}
+            taskList ={taskList}
           />
         ) : null}
 
-        <p>Powered by <b>"L"</b> </p>
+        <p className={style.poweredBy}>
+          Powered by <b>"~L"</b>
+        </p>
+
       </div>
     </div>
   );
